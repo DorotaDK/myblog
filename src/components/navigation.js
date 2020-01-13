@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { useState } from "react"
 
-const Navigation = () => {
+const Navigation = ({ parentCallback }) => {
   const [text, setText] = useState("")
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -32,6 +32,11 @@ const Navigation = () => {
     setText(obj.node.excerpt)
   }
 
+  function handleMenuClick(e) {
+    const value = e.target.getAttribute("value")
+    parentCallback(value)
+  }
+
   return (
     <div>
       <nav>
@@ -45,6 +50,7 @@ const Navigation = () => {
                 value={item.name}
                 onMouseEnter={e => handleMenuHover(e)}
                 onMouseLeave={() => setText("")}
+                onClick={e => handleMenuClick(e)}
               >
                 {item.name}
               </a>

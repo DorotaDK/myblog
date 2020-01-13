@@ -4,6 +4,11 @@ import Navigation from "../components/navigation"
 import { rhythm, scale } from "../utils/typography"
 
 class Layout extends React.Component {
+  state = { filteredPost: "" }
+
+  callbackFunction = data => {
+    this.setState({ filteredPost: data })
+  }
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
@@ -61,7 +66,7 @@ class Layout extends React.Component {
         }}
       >
         <header>
-          <Navigation />
+          <Navigation parentCallback={this.callbackFunction} />
           {header}
         </header>
         <main>{children}</main>
