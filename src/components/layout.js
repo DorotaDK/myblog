@@ -11,10 +11,12 @@ class Layout extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.location.state.text)
-      this.setState({ filteredPost: this.props.location.state.text })
-    else {
-      this.setState({ filteredPost: "" })
+    if (this.props.location.state !== null) {
+      if (this.props.location.state.text)
+        this.setState({ filteredPost: this.props.location.state.text })
+      else {
+        this.setState({ filteredPost: "" })
+      }
     }
   }
 
