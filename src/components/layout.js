@@ -10,6 +10,14 @@ class Layout extends React.Component {
     this.setState({ filteredPost: data })
   }
 
+  componentDidMount() {
+    if (this.props.location.state.text)
+      this.setState({ filteredPost: this.props.location.state.text })
+    else {
+      this.setState({ filteredPost: "" })
+    }
+  }
+
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`

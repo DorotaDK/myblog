@@ -54,6 +54,7 @@ const Navigation = ({ parentCallback }) => {
                 onMouseLeave={() => setText("")}
                 onClick={e => handleMenuClick(e)}
                 to={`/`}
+                state={{ text: item.name }}
               >
                 {item.name}
               </Link>
