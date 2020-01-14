@@ -21,7 +21,7 @@ class BlogIndex extends React.Component {
           if (node.frontmatter.title) {
             const title = node.frontmatter.title || node.fields.slug
             return (
-              <article key={node.fields.slug}>
+              <article key={node.fields.slug} value={node.frontmatter.tag}>
                 <header>
                   <h3
                     style={{
@@ -33,7 +33,6 @@ class BlogIndex extends React.Component {
                     </Link>
                   </h3>
                   <small>{node.frontmatter.date}</small>
-                  <small>{node.frontmatter.tag}</small>
                 </header>
                 <section>
                   <p

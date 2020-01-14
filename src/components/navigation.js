@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import { useState } from "react"
 
 const Navigation = ({ parentCallback }) => {
@@ -28,7 +28,7 @@ const Navigation = ({ parentCallback }) => {
 
   function handleMenuHover(e) {
     const value = e.target.getAttribute("value")
-    const obj = nodes.find(({ node }) => node.frontmatter.text == value)
+    const obj = nodes.find(({ node }) => node.frontmatter.text === value)
     setText(obj.node.excerpt)
   }
 
@@ -42,18 +42,21 @@ const Navigation = ({ parentCallback }) => {
       <nav>
         <ul>
           <li>
-            <a>Strona główna</a>
+            <Link to={`/`} value="" onClick={e => handleMenuClick(e)}>
+              Strona główna
+            </Link>
           </li>
           {list.map(item => (
             <li key={item.name}>
-              <a
+              <Link
                 value={item.name}
                 onMouseEnter={e => handleMenuHover(e)}
                 onMouseLeave={() => setText("")}
                 onClick={e => handleMenuClick(e)}
+                to={`/`}
               >
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
           <li>

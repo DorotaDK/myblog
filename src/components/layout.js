@@ -9,10 +9,27 @@ class Layout extends React.Component {
   callbackFunction = data => {
     this.setState({ filteredPost: data })
   }
+
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     let header
+    let main
+
+    let filteredPosts = []
+    const arr = React.Children.toArray(this.props.children)
+
+    arr.forEach(post => {
+      if (
+        post.props.value === this.state.filteredPost &&
+        this.state.filteredPost !== ""
+      ) {
+        filteredPosts.push(post)
+      }
+      if (this.state.filteredPost === "") {
+        filteredPosts.push(post)
+      }
+    })
 
     if (location.pathname === rootPath) {
       header = (
@@ -35,6 +52,7 @@ class Layout extends React.Component {
           </Link>
         </h1>
       )
+      main = <div>{filteredPosts}</div>
     } else {
       header = (
         <h3
@@ -47,7 +65,7 @@ class Layout extends React.Component {
             style={{
               boxShadow: `none`,
               textDecoration: `none`,
-              color: `inherit`,
+              color: `red`,
             }}
             to={`/`}
           >
@@ -55,7 +73,9 @@ class Layout extends React.Component {
           </Link>
         </h3>
       )
+      main = <div>{children}</div>
     }
+
     return (
       <div
         style={{
@@ -69,7 +89,7 @@ class Layout extends React.Component {
           <Navigation parentCallback={this.callbackFunction} />
           {header}
         </header>
-        <main>{children}</main>
+        <main>{main}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
