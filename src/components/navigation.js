@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { useState } from "react"
+import "../style/navigation.scss"
 
 const Navigation = ({ parentCallback }) => {
   const [text, setText] = useState("")
@@ -38,16 +39,19 @@ const Navigation = ({ parentCallback }) => {
   }
 
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
+    <div className="header-navigation">
+      <nav className="header-navigation-menu">
+        <ul className="header-navigation-menu__ul">
+          <li className="header-navigation-menu__main-page">
             <Link to={`/`} value="" onClick={e => handleMenuClick(e)}>
               Strona główna
             </Link>
           </li>
           {list.map(item => (
-            <li key={item.name}>
+            <li
+              key={item.name}
+              className={`header-navigation-menu__${item.name}`}
+            >
               <Link
                 value={item.name}
                 onMouseEnter={e => handleMenuHover(e)}
@@ -60,15 +64,15 @@ const Navigation = ({ parentCallback }) => {
               </Link>
             </li>
           ))}
-          <li>
-            <a>O mnie</a>
+          <li className="header-navigation-menu__about">
+            <Link to="/about/">O mnie</Link>
           </li>
-          <li>
-            <a>Kontakt</a>
+          <li className="header-navigation-menu__contact">
+            <Link to="/contact/">Kontakt</Link>
           </li>
         </ul>
       </nav>
-      <section>{text}</section>
+      <section className="header-navigation-image">{text}</section>
     </div>
   )
 }
