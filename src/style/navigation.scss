@@ -1,0 +1,41 @@
+.header-navigation-menu {
+    &__ul {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-areas: "main-page animals travels lifestyle culture other . about contact";
+        width: 100%;
+        list-style: none;
+    }
+
+    &__main-page {
+        grid-area: main-page;
+    }
+
+    &__zwierzęta {
+        grid-area: animals;
+    }
+
+    &__podróże {
+        grid-area: travels;
+    }
+
+    &__lifestyle {
+        grid-area: lifestyle;
+    }
+
+    &__kultura {
+        grid-area: culture;
+    }
+
+    &__inne {
+        grid-area: other;
+    }
+
+    &__about {
+        grid-area: about;
+    }
+
+    &__contact {
+        grid-area: contact;
+    }
+}
