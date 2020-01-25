@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Navigation from "../components/navigation"
+import "../style/main.scss"
 
 class Layout extends React.Component {
   state = { filteredPost: "" }

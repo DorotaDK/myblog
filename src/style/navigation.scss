@@ -1,10 +1,27 @@
 .header-navigation-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
     &__ul {
         display: grid;
-        grid-template-columns: repeat(9, 1fr);
-        grid-template-areas: "main-page animals travels lifestyle culture other . about contact";
+        grid-template-columns: repeat(10, auto);
+        grid-template-areas: "main-page animals travels lifestyle culture other . . about contact";
+        padding: 0;
         width: 100%;
+        height: 5vh;
         list-style: none;
+    }
+
+    li {
+        line-height: 5vh;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        text-transform: uppercase;
     }
 
     &__main-page {
@@ -37,5 +54,30 @@
 
     &__contact {
         grid-area: contact;
+    }
+}
+
+.header-navigation-image {
+    height: 50vh;
+    background-image: url(../../content/img/default.jpg);
+
+    &--zwierzęta {
+        background-image: url(../../content/img/animals.jpg);
+    }
+
+    &--podróże {
+        background-image: url(../../content/img/travels.jpg);
+    }
+
+    &--kultura {
+        background-image: url(../../content/img/culture.jpg);
+    }
+
+    &--inne {
+        background-image: url(../../content/img/other.jpg);
+    }
+
+    &--lifestyle {
+        background-image: url(../../content/img/lifestyle.jpg);
     }
 }

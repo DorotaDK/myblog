@@ -5,6 +5,7 @@ import "../style/navigation.scss"
 
 const Navigation = ({ parentCallback }) => {
   const [text, setText] = useState("")
+  const [page, setPage] = useState("")
   const data = useStaticQuery(graphql`
     query MyQuery {
       allFile(filter: { sourceInstanceName: { eq: "shorts" } }) {
@@ -36,6 +37,7 @@ const Navigation = ({ parentCallback }) => {
   function handleMenuClick(e) {
     const value = e.target.getAttribute("value")
     parentCallback(value)
+    setPage(value)
   }
 
   return (
@@ -72,7 +74,11 @@ const Navigation = ({ parentCallback }) => {
           </li>
         </ul>
       </nav>
-      <section className="header-navigation-image">{text}</section>
+      <section
+        className={`header-navigation-image header-navigation-image--${page}`}
+      >
+        {text}
+      </section>
     </div>
   )
 }
