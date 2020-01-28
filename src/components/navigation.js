@@ -3,9 +3,10 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import { useState } from "react"
 import "../style/navigation.scss"
 
-const Navigation = ({ parentCallback }) => {
+const Navigation = ({ parentCallback, page, location }) => {
   const [text, setText] = useState("")
-  const [page, setPage] = useState("")
+  const rootPath = `${__PATH_PREFIX__}/`
+  let description
   const data = useStaticQuery(graphql`
     query MyQuery {
       allFile(filter: { sourceInstanceName: { eq: "shorts" } }) {
@@ -32,12 +33,45 @@ const Navigation = ({ parentCallback }) => {
     const value = e.target.getAttribute("value")
     const obj = nodes.find(({ node }) => node.frontmatter.text === value)
     setText(obj.node.excerpt)
+    const div = document.querySelector(".header-navigation-image__text")
+    const h1 = document.querySelector(".header-navigation-image__description")
+    div.classList.add("header-navigation-image__text--hover")
+    h1.classList.add("header-navigation-image__description--hover")
+  }
+
+  const handleMenuOnLeave = () => {
+    setText("")
+    const div = document.querySelector(".header-navigation-image__text")
+    const h1 = document.querySelector(".header-navigation-image__description")
+    div.classList.remove("header-navigation-image__text--hover")
+    h1.classList.remove("header-navigation-image__description--hover")
   }
 
   function handleMenuClick(e) {
     const value = e.target.getAttribute("value")
     parentCallback(value)
-    setPage(value)
+  }
+
+  if (location.pathname === rootPath) {
+    if (page) {
+      description = (
+        <h1 className="header-navigation-image__description">{page}</h1>
+      )
+    } else {
+      description = (
+        <h1 className="header-navigation-image__description">Strona główna</h1>
+      )
+    }
+  }
+  if (location.pathname === "/about/") {
+    description = (
+      <h1 className="header-navigation-image__description">O mnie</h1>
+    )
+  }
+  if (location.pathname === "/contact/") {
+    description = (
+      <h1 className="header-navigation-image__description">Napisz do mnie</h1>
+    )
   }
 
   return (
@@ -57,7 +91,7 @@ const Navigation = ({ parentCallback }) => {
               <Link
                 value={item.name}
                 onMouseEnter={e => handleMenuHover(e)}
-                onMouseLeave={() => setText("")}
+                onMouseLeave={handleMenuOnLeave}
                 onClick={e => handleMenuClick(e)}
                 to={`/`}
                 state={{ text: item.name }}
@@ -77,7 +111,8 @@ const Navigation = ({ parentCallback }) => {
       <section
         className={`header-navigation-image header-navigation-image--${page}`}
       >
-        {text}
+        {description}
+        <div className="header-navigation-image__text">{text}</div>
       </section>
     </div>
   )

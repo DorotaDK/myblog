@@ -23,6 +23,7 @@ class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
+    const page = this.state.filteredPost
     let header
     let main
 
@@ -60,7 +61,11 @@ class Layout extends React.Component {
     return (
       <div>
         <header>
-          <Navigation parentCallback={this.callbackFunction} />
+          <Navigation
+            parentCallback={this.callbackFunction}
+            page={page}
+            location={location}
+          />
           {header}
         </header>
         <main>{main}</main>

@@ -30,6 +30,10 @@
 
     &__zwierzęta {
         grid-area: animals;
+
+        & a:hover {
+            color: red;
+        }
     }
 
     &__podróże {
@@ -58,19 +62,26 @@
 }
 
 .header-navigation-image {
-    height: 50vh;
+    position: relative;
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
     background-image: url(../../content/img/default.jpg);
+    overflow: hidden;
 
     &--zwierzęta {
         background-image: url(../../content/img/animals.jpg);
+        background-position: 50% 40%;
     }
 
     &--podróże {
         background-image: url(../../content/img/travels.jpg);
+        background-position: 50% 40%;
     }
 
     &--kultura {
         background-image: url(../../content/img/culture.jpg);
+        background-position: 50% 80%;
     }
 
     &--inne {
@@ -79,5 +90,37 @@
 
     &--lifestyle {
         background-image: url(../../content/img/lifestyle.jpg);
+        background-position: 50% 40%;
     }
+
+    &__description {
+        position: absolute;
+        margin: 0;
+        width: 150%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 48px;
+        text-transform: uppercase;
+        background-color: rgba(255, 255, 255, 0.534);
+        transition: 0.2s;
+
+        &--hover {
+            left: 25%;
+        }
+    }
+
+    &__text {
+        position: absolute;
+        right: -10%;
+        top: 20%;
+        transition-duration: 0.2s;
+        overflow: hidden;
+
+        &--hover {
+            right: 0;
+        }
+    }
+
 }
