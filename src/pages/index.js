@@ -1,9 +1,10 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Image from "gatsby-image"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import "../style/index.scss"
 
 class BlogIndex extends React.Component {
   render() {
@@ -14,25 +15,30 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-        <Bio />
         {posts.map(({ node }) => {
           if (node.frontmatter.title) {
             const title = node.frontmatter.title || node.fields.slug
+            const image = node.frontmatter.image.childImageSharp.fluid
             return (
-              <article key={node.fields.slug} value={node.frontmatter.tag}>
-                <header>
-                  <h3>
-                    <Link to={node.fields.slug}>{title}</Link>
-                  </h3>
-                  <small>{node.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: node.frontmatter.description || node.excerpt,
-                    }}
-                  />
-                </section>
+              <article
+                key={node.fields.slug}
+                value={node.frontmatter.tag}
+                className="main-article"
+              >
+                <Link to={node.fields.slug}>
+                  <header>
+                    <Image fluid={image} />
+                    <h3>{title}</h3>
+                    <small>{node.frontmatter.date}</small>
+                  </header>
+                  <section>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: node.frontmatter.description || node.excerpt,
+                      }}
+                    />
+                  </section>
+                </Link>
               </article>
             )
           }
@@ -63,6 +69,13 @@ export const pageQuery = graphql`
             title
             description
             tag
+            image {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

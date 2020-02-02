@@ -8,7 +8,10 @@ module.exports = {
       twitter: `kylemathews`,
     },
   },
-  plugins: [{
+  plugins: [
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
@@ -50,8 +53,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

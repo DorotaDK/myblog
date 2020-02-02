@@ -36,7 +36,9 @@ const Navigation = ({ parentCallback, page, location }) => {
     const div = document.querySelector(".header-navigation-image__text")
     const h1 = document.querySelector(".header-navigation-image__description")
     div.classList.add("header-navigation-image__text--hover")
-    h1.classList.add("header-navigation-image__description--hover")
+    if (h1 !== null) {
+      h1.classList.add("header-navigation-image__description--hover")
+    }
   }
 
   const handleMenuOnLeave = () => {
@@ -44,7 +46,9 @@ const Navigation = ({ parentCallback, page, location }) => {
     const div = document.querySelector(".header-navigation-image__text")
     const h1 = document.querySelector(".header-navigation-image__description")
     div.classList.remove("header-navigation-image__text--hover")
-    h1.classList.remove("header-navigation-image__description--hover")
+    if (h1 !== null) {
+      h1.classList.remove("header-navigation-image__description--hover")
+    }
   }
 
   function handleMenuClick(e) {
@@ -112,7 +116,9 @@ const Navigation = ({ parentCallback, page, location }) => {
         className={`header-navigation-image header-navigation-image--${page}`}
       >
         {description}
-        <div className="header-navigation-image__text">{text}</div>
+        <div className="header-navigation-image__text">
+          <span>{text}</span>
+        </div>
       </section>
     </div>
   )

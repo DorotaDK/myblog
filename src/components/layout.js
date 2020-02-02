@@ -48,14 +48,14 @@ class Layout extends React.Component {
           <Link to={`/`}>{title}</Link>
         </h1>
       )
-      main = <div>{filteredPosts}</div>
+      main = <div className="main">{filteredPosts}</div>
     } else {
       header = (
         <h3>
           <Link to={`/`}>{title}</Link>
         </h3>
       )
-      main = <div>{children}</div>
+      main = <div className="main">{children}</div>
     }
 
     return (
