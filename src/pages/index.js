@@ -25,13 +25,15 @@ class BlogIndex extends React.Component {
                 value={node.frontmatter.tag}
                 className="main-article"
               >
-                <Link to={node.fields.slug}>
-                  <header>
-                    <Image fluid={image} />
-                    <h3>{title}</h3>
-                    <small>{node.frontmatter.date}</small>
+                <Link to={node.fields.slug} className="main-article__container">
+                  <header className="main-article__header">
+                    <Image fluid={image} className="main-article__image" />
+                    <h3 className="main-article__title">{title}</h3>
+                    <small className="main-article__date">
+                      {node.frontmatter.date}
+                    </small>
                   </header>
-                  <section>
+                  <section className="main-article__section">
                     <p
                       dangerouslySetInnerHTML={{
                         __html: node.frontmatter.description || node.excerpt,
