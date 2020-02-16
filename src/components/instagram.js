@@ -1,5 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faComment } from "@fortawesome/free-regular-svg-icons"
+import { faHeart } from "@fortawesome/free-solid-svg-icons"
 import Image from "gatsby-image"
 import "../style/instagram.scss"
 
@@ -41,15 +44,24 @@ const Instagram = () => {
     }
   `)
   const images = data.allInstagramContent.edges
+  const instagramAdress =
+    "https://www.instagram.com/" + data.instagramContent.user.username
   return (
     <div className="container-instagram">
       <h2 className="title-instagram">Instagram</h2>
-      <img
-        src={data.instagramContent.user.profile_picture}
-        alt="instagram profile photo"
-      />
-      <p>{data.instagramContent.user.full_name}</p>
-      <p>{data.instagramContent.user.username}</p>
+      <a href={instagramAdress} className="instagram-link">
+        <img
+          src={data.instagramContent.user.profile_picture}
+          alt="instagram profile photo"
+          className="instagram-link-image"
+        />
+        <p className="instagram-link-name">
+          {data.instagramContent.user.full_name}
+        </p>
+        <p className="instagram-link-username">
+          {data.instagramContent.user.username}
+        </p>
+      </a>
 
       <div className="instagram">
         {images.map((image, i) => (
@@ -60,11 +72,11 @@ const Instagram = () => {
             />
             <div className="instagram-element-likes">
               {image.node.likes.count}
-              <i class="fas fa-heart"></i>
+              <FontAwesomeIcon icon={faHeart} />
             </div>
             <div className="instagram-element-comments">
               {image.node.comments.count}
-              <i class="far fa-comment"></i>
+              <FontAwesomeIcon icon={faComment} />
             </div>
           </a>
         ))}
