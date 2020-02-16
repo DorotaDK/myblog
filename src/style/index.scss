@@ -1,11 +1,11 @@
 .main {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 
     &-article {
-        width: 20vw;
-        height: 20vw;
-
+        width: 20%;
+        height: 20%;
+        margin-bottom: 1.5%;
 
         &__container {
             position: relative;

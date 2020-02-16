@@ -1,0 +1,53 @@
+.instagram {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 35vw;
+    height: 35vw;
+
+    &-element {
+        position: relative;
+
+        // padding: 5px;
+        &-image {
+            width: 100%;
+            transition: 0.15s;
+        }
+
+        &-likes {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(0, -50%);
+            font-size: 20px;
+            opacity: 0;
+            transition: 0.15s;
+
+
+        }
+
+        &-comments {
+            position: absolute;
+            top: 50%;
+            right: 25%;
+            transform: translate(0, -50%);
+            font-size: 20px;
+            opacity: 0;
+            transition: 0.15s;
+
+
+        }
+
+        &:hover &-comments,
+        &:hover &-likes {
+            opacity: 1;
+            color: black;
+
+        }
+
+        &:hover &-image {
+            opacity: 30%;
+        }
+
+    }
+}

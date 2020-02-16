@@ -1,15 +1,24 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { Disqus, CommentCount } from "gatsby-plugin-disqus"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Instagram from "../components/instagram"
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
+
+    // let disqusConfig = {
+    //   url: `${this.props.data.site.siteMetadata.siteUrl +
+    //     this.props.location.pathname}`,
+    //   identifier: post.id,
+    //   title: post.frontmatter.title,
+    // }
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -26,7 +35,9 @@ class BlogPostTemplate extends React.Component {
           <hr />
           <footer>
             <Bio />
+            <Instagram />
           </footer>
+          <Disqus identifier={post.id} title={post.frontmatter.title} />
         </article>
 
         <nav>

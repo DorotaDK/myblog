@@ -12,6 +12,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `nicniezwyklego`
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
@@ -58,6 +64,12 @@ module.exports = {
       options: {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
+    },
+    {
+      resolve: `gatsby-source-instagram-all`,
+      options: {
+        access_token: "2078167035.1677ed0.2ad13c888cad41e19f6c17957793539a"
+      }
     },
     `gatsby-plugin-feed`,
     {
