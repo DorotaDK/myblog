@@ -2,6 +2,10 @@ import React from "react"
 import { Link } from "gatsby"
 import Navigation from "../components/navigation"
 import "../style/main.scss"
+import Instagram from "../components/instagram"
+import algoliasearch from "algoliasearch/lite"
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom"
+import CustomHits from "../utils/customHits"
 
 class Layout extends React.Component {
   state = { filteredPost: "" }
@@ -24,6 +28,10 @@ class Layout extends React.Component {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     const page = this.state.filteredPost
+    const searchClient = algoliasearch(
+      "TG90VSMWJB",
+      "573b8f87a9e7c38622f1f9110048751c"
+    )
     let header
     let main
 
@@ -68,7 +76,14 @@ class Layout extends React.Component {
           />
           {header}
         </header>
-        <main>{main}</main>
+        <main>
+          {main}
+          <Instagram />
+          <InstantSearch searchClient={searchClient} indexName="nicniezwyklego">
+            <SearchBox />
+            <Hits hitComponent={CustomHits} />
+          </InstantSearch>
+        </main>
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

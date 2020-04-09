@@ -48,6 +48,7 @@ const Instagram = () => {
     "https://www.instagram.com/" + data.instagramContent.user.username
   return (
     <div className="container-instagram">
+      <div className="container-instagram-right"></div>
       <h2 className="title-instagram">Instagram</h2>
       <a href={instagramAdress} className="instagram-link">
         <img
@@ -72,11 +73,17 @@ const Instagram = () => {
             />
             <div className="instagram-element-likes">
               {image.node.likes.count}
-              <FontAwesomeIcon icon={faHeart} />
+              <FontAwesomeIcon
+                icon={faHeart}
+                className="instagram-element-likes-icon"
+              />
             </div>
             <div className="instagram-element-comments">
               {image.node.comments.count}
-              <FontAwesomeIcon icon={faComment} />
+              <FontAwesomeIcon
+                icon={faComment}
+                className="instagram-element-comments-icon"
+              />
             </div>
           </a>
         ))}

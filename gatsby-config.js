@@ -1,3 +1,32 @@
+// const queries = require("./src/utils/algolia")
+require("dotenv").config({
+  path: `.env.production`,
+})
+
+const blogQuery = `{
+  allMarkdownRemark (filter: {frontmatter: {title: {ne: ""}}}){
+    nodes {
+      excerpt
+      html
+      frontmatter {
+        title
+        tag
+      }
+      fields {
+        slug
+      }
+    }
+  }
+}
+`
+
+const queries = [{
+  query: blogQuery,
+  transformer: ({
+    data
+  }) => data.allMarkdownRemark.nodes,
+}, ]
+
 module.exports = {
   siteMetadata: {
     title: `DUPADUPA`,
@@ -12,10 +41,20 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_API_KEY,
+        indexName: process.env.ALGOLIA_INDEX_NAME,
+        queries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
+    {
       resolve: `gatsby-plugin-disqus`,
       options: {
-        shortname: `nicniezwyklego`
-      }
+        shortname: `nicniezwyklego`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -68,8 +107,8 @@ module.exports = {
     {
       resolve: `gatsby-source-instagram-all`,
       options: {
-        access_token: "2078167035.1677ed0.2ad13c888cad41e19f6c17957793539a"
-      }
+        access_token: "2078167035.1677ed0.2ad13c888cad41e19f6c17957793539a",
+      },
     },
     `gatsby-plugin-feed`,
     {
@@ -84,6 +123,15 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Roboto"],
+        },
+      },
+    },
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     // {
     //   resolve: `gatsby-plugin-typography`,
