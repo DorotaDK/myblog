@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Navigation from "../components/navigation"
+import LatestPosts from "../components/latestPosts"
 import "../style/main.scss"
 import Instagram from "../components/instagram"
 import algoliasearch from "algoliasearch/lite"
@@ -83,6 +84,7 @@ class Layout extends React.Component {
             <SearchBox />
             <Hits hitComponent={CustomHits} />
           </InstantSearch>
+          <LatestPosts />
         </main>
         <footer>
           © {new Date().getFullYear()}, Built with
