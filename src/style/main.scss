@@ -1,3 +1,9 @@
-body {
-    margin-top: 10vh;
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    position: relative;
+    top: -80px;
+    padding: 50px;
+    background-color: white;
 }

@@ -54,14 +54,18 @@ class Layout extends React.Component {
     if (location.pathname === rootPath) {
       header = (
         <h1>
-          <Link to={`/`}>{title}</Link>
+          <Link to={`/`} className="header-blog-title">
+            {title}
+          </Link>
         </h1>
       )
       main = <div className="main">{filteredPosts}</div>
     } else {
       header = (
         <h3>
-          <Link to={`/`}>{title}</Link>
+          <Link to={`/`} className="header-blog-title">
+            {title}
+          </Link>
         </h3>
       )
       main = <div className="main">{children}</div>
@@ -70,21 +74,26 @@ class Layout extends React.Component {
     return (
       <div>
         <header>
+          {header}
           <Navigation
             parentCallback={this.callbackFunction}
             page={page}
             location={location}
           />
-          {header}
         </header>
         <main>
           {main}
-          <Instagram />
-          <InstantSearch searchClient={searchClient} indexName="nicniezwyklego">
-            <SearchBox />
-            <Hits hitComponent={CustomHits} />
-          </InstantSearch>
-          <LatestPosts />
+          <aside className="aside">
+            <Instagram />
+            <InstantSearch
+              searchClient={searchClient}
+              indexName="nicniezwyklego"
+            >
+              <SearchBox />
+              <Hits hitComponent={CustomHits} />
+            </InstantSearch>
+            <LatestPosts />
+          </aside>
         </main>
         <footer>
           © {new Date().getFullYear()}, Built with

@@ -1,73 +1,9 @@
-.main {
+body {
+    // margin-top: 10vh;
+}
+
+main {
     display: flex;
-    flex-wrap: wrap;
-
-    &-article {
-        width: 20%;
-        height: 20%;
-        margin-bottom: 1.5%;
-
-        &__container {
-            position: relative;
-            display: block;
-            height: 100%;
-            color: black;
-            overflow: hidden;
-
-
-            &:hover section {
-                bottom: 0;
-            }
-
-            &:hover small {
-                right: 0;
-            }
-
-
-
-        }
-
-        &__header {
-            position: relative;
-            height: 100%;
-        }
-
-        &__image {
-            position: absolute;
-            height: 100%;
-        }
-
-        &__title {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0;
-            transition: 0.2s;
-
-
-        }
-
-        &__date {
-            position: absolute;
-            top: 0;
-            right: -50%;
-            transition: 0.2s;
-        }
-
-        &__section {
-            position: absolute;
-            bottom: -50%;
-            width: 20vw;
-            transition: 0.2s;
-
-
-            & p {
-                margin: 0 0 10px 0;
-                font-size: 1.2vw;
-
-
-            }
-        }
-    }
+    margin: 0 auto;
+    width: 80vw;
 }

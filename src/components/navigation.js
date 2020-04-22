@@ -84,7 +84,7 @@ const Navigation = ({ parentCallback, page, location }) => {
         <ul className="header-navigation-menu__ul">
           <li className="header-navigation-menu__main-page">
             <Link to={`/`} value="" onClick={e => handleMenuClick(e)}>
-              Strona główna
+              Wszystkie
             </Link>
           </li>
           {list.map(item => (
@@ -104,12 +104,6 @@ const Navigation = ({ parentCallback, page, location }) => {
               </Link>
             </li>
           ))}
-          <li className="header-navigation-menu__about">
-            <Link to="/about/">O mnie</Link>
-          </li>
-          <li className="header-navigation-menu__contact">
-            <Link to="/contact/">Kontakt</Link>
-          </li>
         </ul>
       </nav>
       <section
