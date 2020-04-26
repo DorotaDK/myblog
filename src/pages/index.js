@@ -28,17 +28,18 @@ class BlogIndex extends React.Component {
                 <Link to={node.fields.slug} className="main-article__container">
                   <header className="main-article__header">
                     <Image fluid={image} className="main-article__image" />
-                    <h3 className="main-article__title">{title}</h3>
-                    <small className="main-article__date">
-                      {node.frontmatter.date}
-                    </small>
                   </header>
-                  <section className="main-article__section">
+                  <section className="main-article__text">
+                    <h3 className="main-article__text-title">{title}</h3>
                     <p
+                      className="main-article__text-description"
                       dangerouslySetInnerHTML={{
                         __html: node.frontmatter.description || node.excerpt,
                       }}
                     />
+                    <small className="main-article__text-date">
+                      {node.frontmatter.date}
+                    </small>
                   </section>
                 </Link>
               </article>

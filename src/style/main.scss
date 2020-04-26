@@ -6,4 +6,46 @@
     top: -80px;
     padding: 50px;
     background-color: white;
+
+    &-article {
+        &__header {
+            box-sizing: border-box;
+            padding: 10px;
+            border: rgba(221, 221, 221, .3) 1px solid;
+
+        }
+
+        &__image {
+            width: 100%;
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        &__text {
+            position: relative;
+            top: -60px;
+            align-self: center;
+            width: 80%;
+            height: 200px;
+            border: rgba(221, 221, 221, 0.8) 1.5px solid;
+            text-align: center;
+            background-color: white;
+
+            &-date {
+                display: block;
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            &-description {
+                padding: 0 20px;
+
+            }
+        }
+
+    }
 }
