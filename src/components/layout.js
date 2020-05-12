@@ -5,11 +5,29 @@ import LatestPosts from "../components/latestPosts"
 import "../style/main.scss"
 import Instagram from "../components/instagram"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom"
+import {
+  InstantSearch,
+  SearchBox,
+  Hits,
+  connectSearchBox,
+} from "react-instantsearch-dom"
 import CustomHits from "../utils/customHits"
+import Autocomplete from "../utils/autocomplete"
 
 class Layout extends React.Component {
-  state = { filteredPost: "" }
+  state = { filteredPost: "", query: "" }
+
+  onSuggestionCleared = () => {
+    this.setState({
+      query: "",
+    })
+  }
+
+  onSuggestionSelected = (_, { suggestion }) => {
+    this.setState({
+      query: suggestion.value,
+    })
+  }
 
   callbackFunction = data => {
     this.setState({ filteredPost: data })
@@ -68,7 +86,7 @@ class Layout extends React.Component {
           </Link>
         </h3>
       )
-      main = <div className="main">{children}</div>
+      main = <div className="blog-post">{children}</div>
     }
 
     return (
@@ -84,14 +102,18 @@ class Layout extends React.Component {
         <main>
           {main}
           <aside className="aside">
-            <Instagram />
             <InstantSearch
               searchClient={searchClient}
               indexName="nicniezwyklego"
             >
-              <SearchBox />
-              <Hits hitComponent={CustomHits} />
+              <Autocomplete
+                onSuggestionSelected={this.onSuggestionSelected}
+                onSuggestionCleared={this.onSuggestionCleared}
+              />
+              {/* <SearchBox />
+              <Hits hitComponent={CustomHits} /> */}
             </InstantSearch>
+            <Instagram />
             <LatestPosts />
           </aside>
         </main>
