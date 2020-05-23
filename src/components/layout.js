@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import Navigation from "../components/navigation"
 import LatestPosts from "../components/latestPosts"
 import "../style/main.scss"
+import "../style/search.scss"
 import Instagram from "../components/instagram"
 import algoliasearch from "algoliasearch/lite"
 import {
@@ -110,8 +111,6 @@ class Layout extends React.Component {
                 onSuggestionSelected={this.onSuggestionSelected}
                 onSuggestionCleared={this.onSuggestionCleared}
               />
-              {/* <SearchBox />
-              <Hits hitComponent={CustomHits} /> */}
             </InstantSearch>
             <Instagram />
             <LatestPosts />

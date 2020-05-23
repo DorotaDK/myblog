@@ -44,6 +44,7 @@
       opacity: 30%;
     }
   }
+
   &-link {
     display: block;
     position: relative;
@@ -53,6 +54,7 @@
     color: black;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
     &-image {
       position: absolute;
       top: 50%;
@@ -61,12 +63,14 @@
       border-radius: 50%;
       width: 20%;
     }
+
     &-name {
       position: absolute;
       left: 50%;
       bottom: 10%;
       font-size: 16px;
     }
+
     &-username {
       position: absolute;
       margin: 0;
@@ -76,13 +80,16 @@
     }
   }
 }
+
 .container-instagram {
   position: relative;
+  margin-top: 50px;
   padding: 1vw;
   border-bottom: black solid 1px;
   border-right: black solid 1px;
   border-left: black solid 1px;
   width: 25vw;
+
   &-right {
     position: absolute;
     top: 0;
